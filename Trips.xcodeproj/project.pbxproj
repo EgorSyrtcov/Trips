@@ -17,6 +17,7 @@
 		E2A9815929375C4900BE6029 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815829375C4900BE6029 /* UITableView.swift */; };
 		E2A9815B29375C8A00BE6029 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815A29375C8A00BE6029 /* UITableViewCell.swift */; };
 		E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815C2937636300BE6029 /* View+Shadow.swift */; };
+		E2A981602937873400BE6029 /* TripPicture.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E2A9815F2937873400BE6029 /* TripPicture.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E2A9815829375C4900BE6029 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		E2A9815A29375C8A00BE6029 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		E2A9815C2937636300BE6029 /* View+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shadow.swift"; sourceTree = "<group>"; };
+		E2A9815F2937873400BE6029 /* TripPicture.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TripPicture.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		E2788C95293644060024D59C /* Trips */ = {
 			isa = PBXGroup;
 			children = (
+				E2A9815E293786F700BE6029 /* Resources */,
 				E2A9815629375C0800BE6029 /* Extention */,
 				E2788C96293644060024D59C /* AppDelegate.swift */,
 				E2788C98293644060024D59C /* SceneDelegate.swift */,
@@ -117,6 +120,14 @@
 				E2A9815C2937636300BE6029 /* View+Shadow.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		E2A9815E293786F700BE6029 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E2A9815F2937873400BE6029 /* TripPicture.jpeg */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2A981602937873400BE6029 /* TripPicture.jpeg in Resources */,
 				E2788CA3293644080024D59C /* LaunchScreen.storyboard in Resources */,
 				E2788CA0293644080024D59C /* Assets.xcassets in Resources */,
 			);
