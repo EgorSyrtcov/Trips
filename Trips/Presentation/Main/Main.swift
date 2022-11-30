@@ -12,7 +12,8 @@ class Main: UIViewController {
     private var trips = [
         TripModel(title: "Bali"),
         TripModel(title: "Mexico"),
-        TripModel(title: "Russian Trip")
+        TripModel(title: "Russian"),
+        TripModel(title: "Ukraine")
     ]
 
     let tableView = UITableView()
@@ -22,6 +23,7 @@ class Main: UIViewController {
         
         setup()
         setupConstraints()
+        setupTableView()
     }
     
     private func setup() {
@@ -29,6 +31,14 @@ class Main: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         tableView.dataSource = self
+    }
+    
+    private func setupTableView() {
+        tableView.registerClassForCell(MainCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 180
     }
     
     private func setupConstraints() {
@@ -51,10 +61,9 @@ extension Main: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell: MainCell = tableView.dequeueReusableCell(for: indexPath)
         let trip = trips[indexPath.row]
-        cell.textLabel?.text = trip.title
+        cell.setupTrip(trip)
         return cell
     }
 }
