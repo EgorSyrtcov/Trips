@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Main: UIViewController {
+class MainViewController: UIViewController {
     
     private var trips = [
         TripModel(title: "Bali"),
@@ -17,6 +17,14 @@ class Main: UIViewController {
     ]
 
     let tableView = UITableView()
+    
+    lazy var addButton: UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(named: "addButton.png"), for: .normal)
+        button.tintColor = .orange
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +59,26 @@ class Main: UIViewController {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        view.addSubview(addButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addButton.heightAnchor.constraint(equalToConstant: 50),
+            addButton.widthAnchor.constraint(equalToConstant: 50),
+            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    @objc func buttonAction(sender: UIButton!) {
+        print("!!!!!!")
+//        let detailVC = DetailVC()
+//        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
-extension Main: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trips.count
