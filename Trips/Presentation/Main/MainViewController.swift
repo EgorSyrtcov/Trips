@@ -72,9 +72,8 @@ class MainViewController: UIViewController {
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        print("!!!!!!")
-//        let detailVC = DetailVC()
-//        navigationController?.pushViewController(detailVC, animated: true)
+        let addVC = AddTripViewController()
+        navigationController?.pushViewController(addVC, animated: true)
     }
 }
 
