@@ -28,11 +28,49 @@ final class AddTripViewController: UIViewController {
         return button
     }()
     
+    private let datePicker: UIDatePicker = {
+        let dp = UIDatePicker(frame: .zero)
+        dp.datePickerMode = .date
+        dp.preferredDatePickerStyle = .inline
+        dp.minimumDate = Calendar.current.date(byAdding: .year, value: -1, to: Date())
+        dp.maximumDate = Calendar.current.date(byAdding: .month, value: 0, to: Date())
+        return dp
+    }()
+    
+    lazy var dateTextField: UITextField = {
+        let tf = UITextField()
+        tf.placeholder = "Enter date of arrival"
+        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.borderStyle = .roundedRect
+        return tf
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         setupConstraints()
+        setupPicker()
+        doneButtonInPicker()
+    }
+    
+    private func setupPicker() {
+        dateTextField.inputView = datePicker
+    }
+    
+    private func doneButtonInPicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        dateTextField.inputAccessoryView = toolbar
+    }
+    
+    @objc func doneAction() {
+        getDateFromPicker()
+        view.endEditing(true)
     }
     
     private func setupConstraints() {
@@ -55,6 +93,16 @@ final class AddTripViewController: UIViewController {
             addPlaceButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             addPlaceButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             addPlaceButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        view.addSubview(dateTextField)
+        dateTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            dateTextField.topAnchor.constraint(equalTo: addPlaceButton.bottomAnchor, constant: 10),
+            dateTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            dateTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            dateTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -104,6 +152,15 @@ extension AddTripViewController: GMSAutocompleteViewControllerDelegate {
 
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}
+
+extension AddTripViewController {
+    
+    func getDateFromPicker() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yy"
+        dateTextField.text = formatter.string(from: datePicker.date)
     }
 }
 

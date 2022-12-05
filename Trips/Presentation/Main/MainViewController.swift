@@ -36,8 +36,7 @@ class MainViewController: UIViewController {
     
     private func setup() {
         self.navigationItem.title = "My trips"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
         tableView.dataSource = self
     }
     
