@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+GooglePlaces in Pods, no dependencies
+Pods-Trips in Pods, depends on:
+GooglePlaces in Pods (explicit)
