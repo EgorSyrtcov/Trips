@@ -21,6 +21,7 @@
 		E2A9816329388E5B00BE6029 /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9816229388E5B00BE6029 /* AddTripViewController.swift */; };
 		E2AB3DBF293DB9FF006867C6 /* UIViewControllerExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AB3DBE293DB9FF006867C6 /* UIViewControllerExtenstion.swift */; };
 		E2AB3DC1293DBA24006867C6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AB3DC0293DBA24006867C6 /* UIViewExtension.swift */; };
+		E2B22E19293F226B00C62B89 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B22E18293F226B00C62B89 /* UIApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		E2A9816229388E5B00BE6029 /* AddTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		E2AB3DBE293DB9FF006867C6 /* UIViewControllerExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtenstion.swift; sourceTree = "<group>"; };
 		E2AB3DC0293DBA24006867C6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		E2B22E18293F226B00C62B89 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				E2A9815729375C2800BE6029 /* UIKit */,
 				E2AB3DBE293DB9FF006867C6 /* UIViewControllerExtenstion.swift */,
+				E2B22E18293F226B00C62B89 /* UIApplication.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B22E19293F226B00C62B89 /* UIApplication.swift in Sources */,
 				E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */,
 				E2788C9B293644060024D59C /* MainViewController.swift in Sources */,
 				E2AB3DC1293DBA24006867C6 /* UIViewExtension.swift in Sources */,
@@ -435,6 +439,7 @@
 				DEVELOPMENT_TEAM = FFYJJ79MSE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trips/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Use photos to add more details to your trips!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -464,6 +469,7 @@
 				DEVELOPMENT_TEAM = FFYJJ79MSE;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Trips/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Use photos to add more details to your trips!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
