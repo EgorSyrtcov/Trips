@@ -29,7 +29,7 @@ class MainCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        setupConstraints()
+        setupUI()
     }
     
     override func layoutSubviews() {
@@ -46,27 +46,25 @@ class MainCell: UITableViewCell {
     
     private func setup() {
         selectionStyle = .none
-        
-        // add shadow on cell
-            setShadow()
     }
     
-    private func setupConstraints() {
+    private func setupUI() {
+        
+        // add shadow on cell
+        setShadow()
        
         contentView.addSubview(profileImageView)
+        profileImageView.addSubview(titleLabel)
+        
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             profileImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            profileImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
-        
-        profileImageView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
+            profileImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
             titleLabel.heightAnchor.constraint(equalToConstant: 50),
             titleLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor),

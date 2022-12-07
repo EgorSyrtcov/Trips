@@ -69,8 +69,8 @@ final class AddTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        setupConstraints()
+        view.backgroundColor = .gray
+        setupUI()
         setupPicker()
         doneButtonInPicker()
     }
@@ -130,7 +130,7 @@ final class AddTripViewController: UIViewController {
             return
         }
         
-        print("Save")
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func handleImageSelector() {
@@ -180,10 +180,8 @@ final class AddTripViewController: UIViewController {
                     }
                 case .authorized:
                     self?.presentPhotoPickerController()
-                case .limited:
-                    if status == .authorized {
-                        self?.presentPhotoPickerController()
-                    }
+                default:
+                    break
                 }
             }
         }
@@ -198,52 +196,40 @@ final class AddTripViewController: UIViewController {
         }
     }
     
-    private func setupConstraints() {
+    private func setupUI() {
         view.addSubview(placeLabel)
-        placeLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(addPlaceButton)
+        view.addSubview(dateTextField)
+        view.addSubview(tripImageView)
+        view.addSubview(saveButton)
         
-    //constant: -60
+        placeLabel.translatesAutoresizingMaskIntoConstraints = false
+        addPlaceButton.translatesAutoresizingMaskIntoConstraints = false
+        dateTextField.translatesAutoresizingMaskIntoConstraints = false
+        tripImageView.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+ 
         NSLayoutConstraint.activate([
             placeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             placeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             placeLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            placeLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        view.addSubview(addPlaceButton)
-        addPlaceButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
+            placeLabel.heightAnchor.constraint(equalToConstant: 50),
+            
             addPlaceButton.topAnchor.constraint(equalTo: placeLabel.bottomAnchor, constant: 10),
             addPlaceButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             addPlaceButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            addPlaceButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        view.addSubview(dateTextField)
-        dateTextField.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
+            addPlaceButton.heightAnchor.constraint(equalToConstant: 50),
+            
             dateTextField.topAnchor.constraint(equalTo: addPlaceButton.bottomAnchor, constant: 30),
             dateTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             dateTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            dateTextField.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        view.addSubview(tripImageView)
-        tripImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
+            dateTextField.heightAnchor.constraint(equalToConstant: 50),
+            
             tripImageView.topAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: 30),
             tripImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             tripImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            tripImageView.heightAnchor.constraint(equalToConstant: 250)
-        ])
-        
-        view.addSubview(saveButton)
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
+            tripImageView.heightAnchor.constraint(equalToConstant: 250),
+            
             saveButton.topAnchor.constraint(equalTo: tripImageView.bottomAnchor, constant: 30),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -257,14 +243,11 @@ final class AddTripViewController: UIViewController {
         autocompleteController.delegate = self
         
         // Specify the place data types to return.
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-                                                  UInt(GMSPlaceField.placeID.rawValue))
+        let fields: GMSPlaceField = GMSPlaceField(
+            rawValue: UInt(GMSPlaceField.name.rawValue
+                          ) | UInt(GMSPlaceField.placeID.rawValue)
+        )
         autocompleteController.placeFields = fields
-        
-        // Specify a filter.
-        let filter = GMSAutocompleteFilter()
-        filter.type = .address
-        autocompleteController.autocompleteFilter = filter
         
         // Display the autocomplete view controller.
         present(autocompleteController, animated: true)
@@ -288,15 +271,6 @@ extension AddTripViewController: GMSAutocompleteViewControllerDelegate {
     // User canceled the operation.
     func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
-    }
-
-    // Turn the network activity indicator on and off again.
-    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-    }
-
-    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
 
