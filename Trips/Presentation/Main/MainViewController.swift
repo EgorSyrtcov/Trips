@@ -9,15 +9,11 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    private var trips = [
-        TripModel(title: "Bali"),
-        TripModel(title: "Mexico"),
-        TripModel(title: "Russian"),
-        TripModel(title: "Ukraine")
-    ]
+    private var trips = [TripModel]()
 
     private let tableView = UITableView()
     private let transition = CircularTransition()
+    private let service = LocalService()
     
     lazy var addButton: UIButton = {
        let button = UIButton()
@@ -33,6 +29,7 @@ final class MainViewController: UIViewController {
         setup()
         setupUI()
         setupTableView()
+        loadModels()
     }
     
     private func setup() {
@@ -48,10 +45,18 @@ final class MainViewController: UIViewController {
         tableView.rowHeight = 180
     }
     
+    private func loadModels() {
+        trips = service.tripModels
+        tableView.reloadData()
+    }
+    
     @objc func buttonAction(sender: UIButton!) {
         let addVC = AddTripViewController()
         addVC.modalPresentationStyle = .custom
         addVC.transitioningDelegate = self
+        addVC.completionSaveModel = { [weak self] in
+            self?.loadModels()
+        }
         navigationController?.pushViewController(addVC, animated: true)
     }
     
@@ -88,6 +93,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setupTrip(trip)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            trips.remove(at: indexPath.item)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            service.removeItem(index: indexPath.item)
+        }
+    }
+    
 }
 
 // MARK: UIViewControllerTransitioningDelegate

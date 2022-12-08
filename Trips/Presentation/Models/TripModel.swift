@@ -7,12 +7,17 @@
 
 import UIKit
 
-class TripModel {
+class TripModel: Codable {
     let title: String
-    var image: UIImage?
+    var image: Data
+    let date: String
     
-    init(title: String, image: UIImage = UIImage(named: "defaultImageTrip")!) {
+    init(title: String,
+         image: Data,
+         date: String
+    ) {
         self.title = title
         self.image = image
+        self.date = date
     }
 }

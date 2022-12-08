@@ -23,6 +23,7 @@
 		E2AB3DC1293DBA24006867C6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AB3DC0293DBA24006867C6 /* UIViewExtension.swift */; };
 		E2B22E19293F226B00C62B89 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B22E18293F226B00C62B89 /* UIApplication.swift */; };
 		E2CA55E1294094DA00DE87B8 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA55E0294094DA00DE87B8 /* CircularTransition.swift */; };
+		E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA55E52941E4E800DE87B8 /* LocalService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		E2AB3DC0293DBA24006867C6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		E2B22E18293F226B00C62B89 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		E2CA55E0294094DA00DE87B8 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		E2CA55E52941E4E800DE87B8 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		E2788CAA293646B20024D59C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				E2CA55E42941E4BB00DE87B8 /* Service */,
 				E2788CAE293647E70024D59C /* Models */,
 				E2788CAB293646D10024D59C /* Main */,
 				E2A9816129388E3400BE6029 /* AddTrip */,
@@ -172,6 +175,14 @@
 				E2A9816229388E5B00BE6029 /* AddTripViewController.swift */,
 			);
 			path = AddTrip;
+			sourceTree = "<group>";
+		};
+		E2CA55E42941E4BB00DE87B8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E2CA55E52941E4E800DE87B8 /* LocalService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +301,7 @@
 			files = (
 				E2B22E19293F226B00C62B89 /* UIApplication.swift in Sources */,
 				E2CA55E1294094DA00DE87B8 /* CircularTransition.swift in Sources */,
+				E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */,
 				E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */,
 				E2788C9B293644060024D59C /* MainViewController.swift in Sources */,
 				E2AB3DC1293DBA24006867C6 /* UIViewExtension.swift in Sources */,

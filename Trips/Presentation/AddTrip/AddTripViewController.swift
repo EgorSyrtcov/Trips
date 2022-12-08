@@ -11,6 +11,8 @@ import Photos
 
 final class AddTripViewController: UIViewController {
     
+    private let service = LocalService()
+    
     private let placeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -66,6 +68,8 @@ final class AddTripViewController: UIViewController {
         return button
     }()
     
+    var completionSaveModel: (() -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,6 +100,7 @@ final class AddTripViewController: UIViewController {
     
     @objc func handleSaveButton() {
         checkField()
+        completionSaveModel?()
     }
     
     private func checkField() {
@@ -129,6 +134,10 @@ final class AddTripViewController: UIViewController {
             self.present(alert, animated: true)
             return
         }
+        
+        guard let imageData = tripImageView.image?.pngData() else { return }
+        let newTrip = TripModel(title: place, image: imageData, date: text)
+        service.tripModels.append(newTrip)
         
         navigationController?.popViewController(animated: true)
     }

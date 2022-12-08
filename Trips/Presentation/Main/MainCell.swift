@@ -26,6 +26,14 @@ class MainCell: UITableViewCell {
         return iv
     }()
     
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .right
+        label.text = "12/12/12"
+        label.font = UIFont.systemFont(ofSize: 20.0)
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -55,9 +63,11 @@ class MainCell: UITableViewCell {
        
         contentView.addSubview(profileImageView)
         profileImageView.addSubview(titleLabel)
+        profileImageView.addSubview(dateLabel)
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -68,13 +78,19 @@ class MainCell: UITableViewCell {
             titleLabel.heightAnchor.constraint(equalToConstant: 50),
             titleLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor)
+            titleLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
+            
+            dateLabel.heightAnchor.constraint(equalToConstant: 50),
+            dateLabel.leadingAnchor.constraint(equalTo: profileImageView.leadingAnchor, constant: 20),
+            dateLabel.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: -20),
+            dateLabel.topAnchor.constraint(equalTo: profileImageView.topAnchor)
         ])
     }
     
     func setupTrip(_ trip: TripModel?) {
         guard let trip = trip else { return }
         titleLabel.text = trip.title
-        profileImageView.image = trip.image
+        profileImageView.image = UIImage(data: trip.image)
+        dateLabel.text = trip.date
     }
 }
