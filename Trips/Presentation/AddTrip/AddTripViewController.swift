@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import GooglePlaces
 import Photos
 
 final class AddTripViewController: UIViewController {
@@ -27,7 +26,7 @@ final class AddTripViewController: UIViewController {
         button.tintColor = .orange
         button.backgroundColor = .blue
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(autocompleteClicked), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(autocompleteClicked), for: .touchUpInside)
         return button
     }()
     
@@ -244,42 +243,6 @@ final class AddTripViewController: UIViewController {
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             saveButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-    }
-    
-    // Present the Autocomplete view controller when the button is pressed.
-    @objc func autocompleteClicked(_ sender: UIButton) {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        
-        // Specify the place data types to return.
-        let fields: GMSPlaceField = GMSPlaceField(
-            rawValue: UInt(GMSPlaceField.name.rawValue
-                          ) | UInt(GMSPlaceField.placeID.rawValue)
-        )
-        autocompleteController.placeFields = fields
-        
-        // Display the autocomplete view controller.
-        present(autocompleteController, animated: true)
-    }
-    
-}
-
-extension AddTripViewController: GMSAutocompleteViewControllerDelegate {
-    
-    // Handle the user's selection.
-    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        placeLabel.text = place.name
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
-        // TODO: handle the error.
-        print("Error: ", error.localizedDescription)
-    }
-    
-    // User canceled the operation.
-    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
-        dismiss(animated: true, completion: nil)
     }
 }
 
