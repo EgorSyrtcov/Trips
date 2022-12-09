@@ -35,12 +35,12 @@ final class MainViewController: UIViewController {
     private func setup() {
         self.navigationItem.title = "My trips"
         view.backgroundColor = .lightGray
-        navigationController?.delegate = self
     }
     
     private func setupTableView() {
         tableView.registerClassForCell(MainCell.self)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.rowHeight = 180
     }
@@ -52,6 +52,7 @@ final class MainViewController: UIViewController {
     
     @objc func buttonAction(sender: UIButton!) {
         let addVC = AddTripViewController()
+        navigationController?.delegate = self
         addVC.modalPresentationStyle = .custom
         addVC.transitioningDelegate = self
         addVC.completionSaveModel = { [weak self] in
@@ -102,6 +103,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let trip = trips[indexPath.row]
+        let detailScreen = DetailTrip()
+        detailScreen.setupTrip(trip)
+        navigationController?.delegate = nil
+        navigationController?.pushViewController(detailScreen, animated: true)
+    }
 }
 
 // MARK: UIViewControllerTransitioningDelegate
