@@ -26,7 +26,7 @@ final class AddTripViewController: UIViewController {
         button.tintColor = .orange
         button.backgroundColor = .blue
         button.layer.cornerRadius = 5
-//        button.addTarget(self, action: #selector(autocompleteClicked), for: .touchUpInside)
+        button.addTarget(self, action: #selector(presentAddPlaceVC), for: .touchUpInside)
         return button
     }()
     
@@ -100,6 +100,14 @@ final class AddTripViewController: UIViewController {
     @objc func handleSaveButton() {
         checkField()
         completionSaveModel?()
+    }
+    
+    @objc func presentAddPlaceVC() {
+        let searchVC = SearchViewController()
+        searchVC.completionSaveCity = { [weak self] city in
+            self?.placeLabel.text = city
+        }
+        navigationController?.pushViewController(searchVC, animated: true)
     }
     
     private func checkField() {

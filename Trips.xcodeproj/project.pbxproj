@@ -13,6 +13,7 @@
 		E2788CA0293644080024D59C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2788C9F293644080024D59C /* Assets.xcassets */; };
 		E2788CA3293644080024D59C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2788CA1293644080024D59C /* LaunchScreen.storyboard */; };
 		E2788CB0293648580024D59C /* TripModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2788CAF293648580024D59C /* TripModel.swift */; };
+		E297D08B29597BF800E4E872 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297D08A29597BF800E4E872 /* SearchViewController.swift */; };
 		E2A98155293759ED00BE6029 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A98154293759ED00BE6029 /* MainCell.swift */; };
 		E2A9815929375C4900BE6029 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815829375C4900BE6029 /* UITableView.swift */; };
 		E2A9815B29375C8A00BE6029 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815A29375C8A00BE6029 /* UITableViewCell.swift */; };
@@ -35,6 +36,7 @@
 		E2788CA2293644080024D59C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2788CA4293644080024D59C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2788CAF293648580024D59C /* TripModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripModel.swift; sourceTree = "<group>"; };
+		E297D08A29597BF800E4E872 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E2A98154293759ED00BE6029 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		E2A9815829375C4900BE6029 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		E2A9815A29375C8A00BE6029 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				E2788CAE293647E70024D59C /* Models */,
 				E2788CAB293646D10024D59C /* Main */,
+				E297D08929597B8E00E4E872 /* Search */,
 				E2A9816129388E3400BE6029 /* AddTrip */,
 				E2CA55E72943095900DE87B8 /* DetailTrip */,
 			);
@@ -116,6 +119,14 @@
 				E2788CAF293648580024D59C /* TripModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E297D08929597B8E00E4E872 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E297D08A29597BF800E4E872 /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		E2A9815629375C0800BE6029 /* Extention */ = {
@@ -246,6 +257,7 @@
 				E2CA55E1294094DA00DE87B8 /* CircularTransition.swift in Sources */,
 				E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */,
 				E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */,
+				E297D08B29597BF800E4E872 /* SearchViewController.swift in Sources */,
 				E2788C9B293644060024D59C /* MainViewController.swift in Sources */,
 				E2AB3DC1293DBA24006867C6 /* UIViewExtension.swift in Sources */,
 				E2788C97293644060024D59C /* AppDelegate.swift in Sources */,
