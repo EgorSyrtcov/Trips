@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import MapKit
 
-final class SearchViewController: UIViewController, MKLocalSearchCompleterDelegate {
+final class SearchViewController: UIViewController {
     
     // MARK: - Constants
     private struct Constants {
@@ -18,8 +17,7 @@ final class SearchViewController: UIViewController, MKLocalSearchCompleterDelega
     // MARK: - Properties
     private let tableView = UITableView()
     private let searchController = UISearchController(searchResultsController: nil)
-    private var searchCompleter = MKLocalSearchCompleter()
-    private var searchResults = [MKLocalSearchCompletion]()
+    private var searchResults = [String]()
     var completionSaveCity: ((String) -> ())?
     
     override func viewDidLoad() {
@@ -41,7 +39,6 @@ final class SearchViewController: UIViewController, MKLocalSearchCompleterDelega
     
     private func setupNavigationController() {
         navigationItem.title = "Search cities"
-        searchCompleter.delegate = self
     }
     
     private func setupSearchController() {
@@ -64,6 +61,34 @@ final class SearchViewController: UIViewController, MKLocalSearchCompleterDelega
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    private func requestSearch(city: String) {
+    
+            let request = Request(
+                endPoint: .findPlace,
+                queryParameters: [
+                    URLQueryItem(name: "fields", value: "formatted_address"),
+                    URLQueryItem(name: "input", value: city),
+                    URLQueryItem(name: "inputtype", value: "textquery"),
+                    URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
+                ]
+            )
+    
+            Service.shared.execute(
+                request,
+                expecting: City.self) { [weak self] result in
+                    switch result {
+                    case .success(let model):
+                        self?.searchResults = []
+                        self?.searchResults.append(model.candidates.first?.address ?? "")
+                        DispatchQueue.main.async {
+                            self?.tableView.reloadData()
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+        }
 }
 
 extension SearchViewController: UISearchResultsUpdating {
@@ -72,13 +97,10 @@ extension SearchViewController: UISearchResultsUpdating {
         
         guard let text = searchController.searchBar.text else { return }
         guard text.count >= Constants.textCountSearch else { return }
-        searchCompleter.queryFragment = text
-    }
-    
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         
-        searchResults = completer.results
-        tableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.requestSearch(city: text)
+        }
     }
 }
 
@@ -92,25 +114,15 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         let searchResult = searchResults[indexPath.row]
         let cell: UITableViewCell = tableView.dequeueReusableCell(for: indexPath)
         
-        cell.textLabel?.text = searchResult.title
-        cell.detailTextLabel?.text = searchResult.subtitle
+        cell.textLabel?.text = searchResult
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let result = searchResults[indexPath.row]
-        let searchRequest = MKLocalSearch.Request(completion: result)
-        
-        let search = MKLocalSearch(request: searchRequest)
-        search.start { (response, error) in
-        
-            guard let name = response?.mapItems[0].name else {
-                return
-            }
-            self.getCity(city: name)
-        }
+        let nameCity = searchResults[indexPath.row]
+        self.getCity(city: nameCity)
     }
     
     private func getCity(city: String) {

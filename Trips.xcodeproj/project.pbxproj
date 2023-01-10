@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E255CA9C2967FAAB00D585C8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255CA9B2967FAAB00D585C8 /* Request.swift */; };
+		E255CA9E29680F1200D585C8 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255CA9D29680F1200D585C8 /* Service.swift */; };
+		E255CAA0296810D900D585C8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255CA9F296810D900D585C8 /* Endpoint.swift */; };
+		E255CAA329681B6700D585C8 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = E255CAA229681B6700D585C8 /* City.swift */; };
 		E2788C97293644060024D59C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2788C96293644060024D59C /* AppDelegate.swift */; };
 		E2788C99293644060024D59C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2788C98293644060024D59C /* SceneDelegate.swift */; };
 		E2788C9B293644060024D59C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2788C9A293644060024D59C /* MainViewController.swift */; };
@@ -28,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E255CA9B2967FAAB00D585C8 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		E255CA9D29680F1200D585C8 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		E255CA9F296810D900D585C8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		E255CAA229681B6700D585C8 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		E2788C93293644060024D59C /* Trips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2788C96293644060024D59C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2788C98293644060024D59C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +69,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E255CA9A2967FA7000D585C8 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				E255CA9D29680F1200D585C8 /* Service.swift */,
+				E255CA9B2967FAAB00D585C8 /* Request.swift */,
+				E255CA9F296810D900D585C8 /* Endpoint.swift */,
+			);
+			name = APIClient;
+			sourceTree = "<group>";
+		};
+		E255CAA129681B4500D585C8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E255CAA229681B6700D585C8 /* City.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E2788C8A293644050024D59C = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +106,8 @@
 		E2788C95293644060024D59C /* Trips */ = {
 			isa = PBXGroup;
 			children = (
+				E255CAA129681B4500D585C8 /* Models */,
+				E255CA9A2967FA7000D585C8 /* APIClient */,
 				E2A9815E293786F700BE6029 /* Resources */,
 				E2A9815629375C0800BE6029 /* Extention */,
 				E2788C96293644060024D59C /* AppDelegate.swift */,
@@ -258,11 +286,15 @@
 				E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */,
 				E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */,
 				E297D08B29597BF800E4E872 /* SearchViewController.swift in Sources */,
+				E255CA9E29680F1200D585C8 /* Service.swift in Sources */,
+				E255CAA329681B6700D585C8 /* City.swift in Sources */,
 				E2788C9B293644060024D59C /* MainViewController.swift in Sources */,
 				E2AB3DC1293DBA24006867C6 /* UIViewExtension.swift in Sources */,
+				E255CA9C2967FAAB00D585C8 /* Request.swift in Sources */,
 				E2788C97293644060024D59C /* AppDelegate.swift in Sources */,
 				E2788CB0293648580024D59C /* TripModel.swift in Sources */,
 				E2788C99293644060024D59C /* SceneDelegate.swift in Sources */,
+				E255CAA0296810D900D585C8 /* Endpoint.swift in Sources */,
 				E2A9816329388E5B00BE6029 /* AddTripViewController.swift in Sources */,
 				E2AB3DBF293DB9FF006867C6 /* UIViewControllerExtenstion.swift in Sources */,
 				E2A98155293759ED00BE6029 /* MainCell.swift in Sources */,
