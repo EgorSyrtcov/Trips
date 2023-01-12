@@ -14,6 +14,8 @@ final class SearchViewController: UIViewController {
         static let textCountSearch = 3
     }
     
+    let service = Service()
+    
     // MARK: - Properties
     private let tableView = UITableView()
     private let searchController = UISearchController(searchResultsController: nil)
@@ -62,33 +64,26 @@ final class SearchViewController: UIViewController {
         ])
     }
     
-    private func requestSearch(city: String) {
+    private func requestSearch(city: String) async {
     
-            let request = Request(
-                endPoint: .findPlace,
-                queryParameters: [
-                    URLQueryItem(name: "fields", value: "formatted_address"),
-                    URLQueryItem(name: "input", value: city),
-                    URLQueryItem(name: "inputtype", value: "textquery"),
-                    URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
-                ]
-            )
-    
-            Service.shared.execute(
-                request,
-                expecting: City.self) { [weak self] result in
-                    switch result {
-                    case .success(let model):
-                        self?.searchResults = []
-                        self?.searchResults.append(model.candidates.first?.address ?? "")
-                        DispatchQueue.main.async {
-                            self?.tableView.reloadData()
-                        }
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                    }
-                }
+        let request = Request(
+            endPoint: .findPlace,
+            queryParameters: [
+                URLQueryItem(name: "fields", value: "formatted_address"),
+                URLQueryItem(name: "input", value: city),
+                URLQueryItem(name: "inputtype", value: "textquery"),
+                URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
+            ]
+        )
+        
+        self.searchResults = []
+        let city = try? await service.executeWithAsync(request, expecting: City.self)
+        
+        await MainActor.run { [weak self] in
+            self?.searchResults.append(city?.candidates.first?.address ?? "")
+            self?.tableView.reloadData()
         }
+    }
 }
 
 extension SearchViewController: UISearchResultsUpdating {
@@ -98,8 +93,10 @@ extension SearchViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else { return }
         guard text.count >= Constants.textCountSearch else { return }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.requestSearch(city: text)
+        DispatchQueue.main.async { [weak self] in
+            Task {
+                await self?.requestSearch(city: text)
+            }
         }
     }
 }

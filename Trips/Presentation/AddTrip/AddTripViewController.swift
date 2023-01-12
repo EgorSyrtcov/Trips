@@ -142,7 +142,7 @@ final class AddTripViewController: UIViewController {
             return
         }
         
-        guard let imageData = tripImageView.image?.pngData() else { return }
+        guard let imageData = tripImageView.image?.jpegData(compressionQuality: 0.5) else { return }
         let newTrip = TripModel(title: place, image: imageData, date: text)
         service.tripModels.append(newTrip)
         

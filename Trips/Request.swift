@@ -10,7 +10,7 @@ import Foundation
 final class Request {
     
     private struct Constants {
-        static let baseUrl = "https://maps.googleapis.com/maps/api"
+        static let baseUrl = "https://"
     }
     
     enum HTTPMethodType: String {
@@ -30,7 +30,6 @@ final class Request {
     private var urlString: String {
         
         var string = Constants.baseUrl
-        string += "/"
         string += endPoint.rawValue
         
         if !pathComponents.isEmpty {
@@ -57,7 +56,7 @@ final class Request {
         return сomponent?.url
     }
     
-    public var methodType: HTTPMethodType
+    public let methodType: HTTPMethodType
     
     public var searchCity: String?
     

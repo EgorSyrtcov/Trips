@@ -17,7 +17,7 @@ final class MainViewController: UIViewController {
     
     lazy var addButton: UIButton = {
        let button = UIButton()
-        button.setImage(UIImage(named: "addButton.png"), for: .normal)
+        button.setImage(UIImage(named: "addButton"), for: .normal)
         button.tintColor = .gray
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
