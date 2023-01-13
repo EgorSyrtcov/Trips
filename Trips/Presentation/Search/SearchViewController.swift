@@ -66,18 +66,18 @@ final class SearchViewController: UIViewController {
     
     private func requestSearch(city: String) async {
     
-        let request = Request(
-            endPoint: .findPlace,
-            queryParameters: [
-                URLQueryItem(name: "fields", value: "formatted_address"),
-                URLQueryItem(name: "input", value: city),
-                URLQueryItem(name: "inputtype", value: "textquery"),
-                URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
-            ]
-        )
+//        let request = Request(
+//            endPoint: .findPlace,
+//            queryParameters: [
+//                URLQueryItem(name: "fields", value: "formatted_address"),
+//                URLQueryItem(name: "input", value: city),
+//                URLQueryItem(name: "inputtype", value: "textquery"),
+//                URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
+//            ]
+//        )
         
         self.searchResults = []
-        let city = try? await service.executeWithAsync(request, expecting: City.self)
+        let city = try? await service.execute(.searchCity, expecting: City.self)
         
         await MainActor.run { [weak self] in
             self?.searchResults.append(city?.candidates.first?.address ?? "")

@@ -23,20 +23,12 @@ final class Request {
     
     private let endPoint: Endpoint
     
-    private let pathComponents: [String]
-    
     private let queryParameters: [URLQueryItem]
     
     private var urlString: String {
         
         var string = Constants.baseUrl
         string += endPoint.rawValue
-        
-        if !pathComponents.isEmpty {
-            pathComponents.forEach {
-                string += "/\($0)"
-            }
-        }
         
         if !queryParameters.isEmpty {
             string += "?"
@@ -58,17 +50,27 @@ final class Request {
     
     public let methodType: HTTPMethodType
     
-    public var searchCity: String?
-    
     init(
         endPoint: Endpoint,
         methodType: HTTPMethodType = .get,
-        pathComponents: [String] = [],
         queryParameters: [URLQueryItem] = []
     ) {
         self.endPoint = endPoint
         self.methodType = methodType
-        self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
 }
+
+extension Request {
+    
+    static let searchCity = Request(
+        endPoint: .findPlace,
+        queryParameters: [
+            URLQueryItem(name: "fields", value: "formatted_address"),
+            URLQueryItem(name: "input", value: "city"),
+            URLQueryItem(name: "inputtype", value: "textquery"),
+            URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
+        ]
+    )
+}
+

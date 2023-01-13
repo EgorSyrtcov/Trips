@@ -51,7 +51,7 @@ final class Service {
         return request
     }
     
-    public func executeWithAsync<T: Codable>(
+    public func execute<T: Codable>(
         _ request: Request,
         expecting type: T.Type
     ) async throws -> T? {

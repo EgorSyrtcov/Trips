@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate enum SessionUserDefaultKey: String {
+private enum SessionUserDefaultKey: String {
     case notification = "notification"
     var key: String { return rawValue }
 }

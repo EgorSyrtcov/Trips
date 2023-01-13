@@ -26,7 +26,6 @@
 		E2AB3DBF293DB9FF006867C6 /* UIViewControllerExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AB3DBE293DB9FF006867C6 /* UIViewControllerExtenstion.swift */; };
 		E2AB3DC1293DBA24006867C6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AB3DC0293DBA24006867C6 /* UIViewExtension.swift */; };
 		E2B22E19293F226B00C62B89 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B22E18293F226B00C62B89 /* UIApplication.swift */; };
-		E2CA55E1294094DA00DE87B8 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA55E0294094DA00DE87B8 /* CircularTransition.swift */; };
 		E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA55E52941E4E800DE87B8 /* LocalService.swift */; };
 		E2CA55E92943097E00DE87B8 /* DetailTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA55E82943097E00DE87B8 /* DetailTrip.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +52,6 @@
 		E2AB3DBE293DB9FF006867C6 /* UIViewControllerExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtenstion.swift; sourceTree = "<group>"; };
 		E2AB3DC0293DBA24006867C6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		E2B22E18293F226B00C62B89 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
-		E2CA55E0294094DA00DE87B8 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		E2CA55E52941E4E800DE87B8 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		E2CA55E82943097E00DE87B8 /* DetailTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,7 +161,6 @@
 				E2A9815729375C2800BE6029 /* UIKit */,
 				E2AB3DBE293DB9FF006867C6 /* UIViewControllerExtenstion.swift */,
 				E2B22E18293F226B00C62B89 /* UIApplication.swift */,
-				E2CA55E0294094DA00DE87B8 /* CircularTransition.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -282,7 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2B22E19293F226B00C62B89 /* UIApplication.swift in Sources */,
-				E2CA55E1294094DA00DE87B8 /* CircularTransition.swift in Sources */,
 				E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */,
 				E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */,
 				E297D08B29597BF800E4E872 /* SearchViewController.swift in Sources */,

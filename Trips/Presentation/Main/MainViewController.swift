@@ -12,13 +12,14 @@ final class MainViewController: UIViewController {
     private var trips = [TripModel]()
 
     private let tableView = UITableView()
-    private let transition = CircularTransition()
     private let service = LocalService()
     
     lazy var addButton: UIButton = {
        let button = UIButton()
         button.setImage(UIImage(named: "addButton"), for: .normal)
-        button.tintColor = .gray
+        button.clipsToBounds = true
+        button.contentMode = .scaleToFill
+        button.tintColor = .red
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
@@ -52,9 +53,7 @@ final class MainViewController: UIViewController {
     
     @objc func buttonAction(sender: UIButton!) {
         let addVC = AddTripViewController()
-        navigationController?.delegate = self
         addVC.modalPresentationStyle = .custom
-        addVC.transitioningDelegate = self
         addVC.completionSaveModel = { [weak self] in
             self?.loadModels()
         }
@@ -109,32 +108,5 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         detailScreen.setupTrip(trip)
         navigationController?.delegate = nil
         navigationController?.pushViewController(detailScreen, animated: true)
-    }
-}
-
-// MARK: UIViewControllerTransitioningDelegate
-extension MainViewController: UIViewControllerTransitioningDelegate {
-    
-    private func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .present
-        transition.startingPoint = addButton.center
-        transition.circleColor = addButton.backgroundColor!
-        return transition
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .dismiss
-        transition.startingPoint = addButton.center
-        transition.circleColor = addButton.backgroundColor!
-        return transition
-    }
-}
-
-extension MainViewController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = operation == .push ? .present : .dismiss
-        transition.startingPoint = addButton.center
-        transition.circleColor = operation == .pop ? .gray : .gray
-        return transition
     }
 }
