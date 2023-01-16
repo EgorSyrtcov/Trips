@@ -63,14 +63,13 @@ final class Request {
 
 extension Request {
     
-    static let searchCity = Request(
-        endPoint: .findPlace,
-        queryParameters: [
-            URLQueryItem(name: "fields", value: "formatted_address"),
-            URLQueryItem(name: "input", value: "city"),
-            URLQueryItem(name: "inputtype", value: "textquery"),
-            URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
-        ]
-    )
+    static func searchRequest(city: String) -> Request {
+        return Request(
+            endPoint: .findPlace,
+            queryParameters: [
+                URLQueryItem(name: "input", value: city),
+                URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
+            ]
+        )
+    }
 }
-

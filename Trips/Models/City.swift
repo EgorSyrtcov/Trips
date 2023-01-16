@@ -7,17 +7,23 @@
 
 import Foundation
 
+// MARK: - CityResponse
+struct CityResponse: Codable {
+    let сities: [City]
+    let status: String
+    
+    enum CodingKeys: String, CodingKey {
+        case сities = "predictions"
+        case status
+    }}
+
 // MARK: - City
 struct City: Codable {
-    let candidates: [Candidate]
-    let status: String
-}
-
-// MARK: - Candidate
-struct Candidate: Codable {
-    let address: String
+    let description: String
+    let placeID: String
 
     enum CodingKeys: String, CodingKey {
-        case address = "formatted_address"
+        case description
+        case placeID = "place_id"
     }
 }

@@ -11,10 +11,12 @@ import Photos
 final class AddTripViewController: UIViewController {
     
     private let service = LocalService()
+    private var city: City?
     
     private let placeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.text = "No select place"
         label.font = UIFont.systemFont(ofSize: 20.0)
         return label
@@ -105,7 +107,8 @@ final class AddTripViewController: UIViewController {
     @objc func presentAddPlaceVC() {
         let searchVC = SearchViewController()
         searchVC.completionSaveCity = { [weak self] city in
-            self?.placeLabel.text = city
+            self?.placeLabel.text = city.description
+            self?.city = city
         }
         navigationController?.pushViewController(searchVC, animated: true)
     }
@@ -142,8 +145,12 @@ final class AddTripViewController: UIViewController {
             return
         }
         
-        guard let imageData = tripImageView.image?.jpegData(compressionQuality: 0.5) else { return }
-        let newTrip = TripModel(title: place, image: imageData, date: text)
+        guard
+            let imageData = tripImageView.image?.jpegData(compressionQuality: 0.5),
+              let city = city
+        else { return }
+        
+        let newTrip = TripModel(title: place, image: imageData, date: text, placeId: city.placeID)
         service.tripModels.append(newTrip)
         
         navigationController?.popViewController(animated: true)
@@ -269,7 +276,6 @@ extension AddTripViewController: UIImagePickerControllerDelegate, UINavigationCo
         if let image = info[.originalImage] as? UIImage {
             self.tripImageView.image = image
         }
-        
         dismiss(animated: true)
     }
     
@@ -277,15 +283,3 @@ extension AddTripViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated: true)
     }
 }
-
-#if DEBUG
-import SwiftUI
-
-@available(iOS 13, *)
-struct ViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        // view controller using programmatic UI
-        AddTripViewController().showPreview().ignoresSafeArea()
-    }
-}
-#endif

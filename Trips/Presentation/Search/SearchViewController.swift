@@ -14,13 +14,15 @@ final class SearchViewController: UIViewController {
         static let textCountSearch = 3
     }
     
+    private var isRequest = false
+    
     let service = Service()
     
     // MARK: - Properties
     private let tableView = UITableView()
     private let searchController = UISearchController(searchResultsController: nil)
-    private var searchResults = [String]()
-    var completionSaveCity: ((String) -> ())?
+    private var searchResults = [City]()
+    var completionSaveCity: ((City) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,22 +67,12 @@ final class SearchViewController: UIViewController {
     }
     
     private func requestSearch(city: String) async {
-    
-//        let request = Request(
-//            endPoint: .findPlace,
-//            queryParameters: [
-//                URLQueryItem(name: "fields", value: "formatted_address"),
-//                URLQueryItem(name: "input", value: city),
-//                URLQueryItem(name: "inputtype", value: "textquery"),
-//                URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
-//            ]
-//        )
         
         self.searchResults = []
-        let city = try? await service.execute(.searchCity, expecting: City.self)
-        
+        let city = try? await service.execute(.searchRequest(city: city), expecting: CityResponse.self)
+
         await MainActor.run { [weak self] in
-            self?.searchResults.append(city?.candidates.first?.address ?? "")
+            self?.searchResults = city?.сities ?? []
             self?.tableView.reloadData()
         }
     }
@@ -93,10 +85,8 @@ extension SearchViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text else { return }
         guard text.count >= Constants.textCountSearch else { return }
         
-        DispatchQueue.main.async { [weak self] in
-            Task {
-                await self?.requestSearch(city: text)
-            }
+        Task {
+            await requestSearch(city: text)
         }
     }
 }
@@ -111,18 +101,18 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         let searchResult = searchResults[indexPath.row]
         let cell: UITableViewCell = tableView.dequeueReusableCell(for: indexPath)
         
-        cell.textLabel?.text = searchResult
+        cell.textLabel?.text = searchResult.description
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let nameCity = searchResults[indexPath.row]
-        self.getCity(city: nameCity)
+        let selectedCity = searchResults[indexPath.row]
+        self.getCity(city: selectedCity)
     }
     
-    private func getCity(city: String) {
+    private func getCity(city: City) {
         completionSaveCity?(city)
         self.navigationController?.popViewController(animated: true)
     }

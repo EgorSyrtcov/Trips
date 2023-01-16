@@ -11,13 +11,16 @@ class TripModel: Codable {
     let title: String
     var image: Data
     let date: String
+    let placeId: String
     
     init(title: String,
          image: Data,
-         date: String
+         date: String,
+         placeId: String
     ) {
         self.title = title
         self.image = image
         self.date = date
+        self.placeId = placeId
     }
 }
