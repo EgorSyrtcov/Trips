@@ -18,6 +18,7 @@ final class AddTripViewController: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.text = "No select place"
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20.0)
         return label
     }()
@@ -28,6 +29,7 @@ final class AddTripViewController: UIViewController {
         button.tintColor = .orange
         button.backgroundColor = .blue
         button.layer.cornerRadius = 5
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(presentAddPlaceVC), for: .touchUpInside)
         return button
     }()
@@ -46,6 +48,7 @@ final class AddTripViewController: UIViewController {
         tf.placeholder = "Enter date of arrival"
         tf.font = UIFont.systemFont(ofSize: 16)
         tf.borderStyle = .roundedRect
+        tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
     }()
     
@@ -57,6 +60,7 @@ final class AddTripViewController: UIViewController {
         iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImageSelector)))
         iv.layer.cornerRadius = 10
         iv.clipsToBounds = true
+        iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
@@ -65,6 +69,7 @@ final class AddTripViewController: UIViewController {
         button.setTitle("Save", for: .normal)
         button.backgroundColor = .red
         button.layer.cornerRadius = 10
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleSaveButton), for: .touchUpInside)
         return button
     }()
@@ -150,7 +155,7 @@ final class AddTripViewController: UIViewController {
               let city = city
         else { return }
         
-        let newTrip = TripModel(title: place, image: imageData, date: text, placeId: city.placeID)
+        let newTrip = TripModel(title: place, image: imageData, date: text, placeId: city.placeID, note: "Note")
         service.tripModels.append(newTrip)
         
         navigationController?.popViewController(animated: true)
@@ -220,17 +225,7 @@ final class AddTripViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.addSubview(placeLabel)
-        view.addSubview(addPlaceButton)
-        view.addSubview(dateTextField)
-        view.addSubview(tripImageView)
-        view.addSubview(saveButton)
-        
-        placeLabel.translatesAutoresizingMaskIntoConstraints = false
-        addPlaceButton.translatesAutoresizingMaskIntoConstraints = false
-        dateTextField.translatesAutoresizingMaskIntoConstraints = false
-        tripImageView.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubviews(placeLabel, addPlaceButton, dateTextField, tripImageView, saveButton)
  
         NSLayoutConstraint.activate([
             placeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

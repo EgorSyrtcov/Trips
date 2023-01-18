@@ -13,10 +13,8 @@ final class SearchViewController: UIViewController {
     private struct Constants {
         static let textCountSearch = 3
     }
-    
-    private var isRequest = false
-    
-    let service = Service()
+    private let service = Service()
+    private var task: Task<(), Error>?
     
     // MARK: - Properties
     private let tableView = UITableView()
@@ -67,7 +65,7 @@ final class SearchViewController: UIViewController {
     }
     
     private func requestSearch(city: String) async {
-        
+
         self.searchResults = []
         let city = try? await service.execute(.searchRequest(city: city), expecting: CityResponse.self)
 
@@ -82,11 +80,12 @@ extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         
-        guard let text = searchController.searchBar.text else { return }
-        guard text.count >= Constants.textCountSearch else { return }
+        task?.cancel()
         
-        Task {
-            await requestSearch(city: text)
+        task = Task.delayed(byTimeInterval: 1) {
+            guard let text = await searchController.searchBar.text else { return }
+            guard text.count >= Constants.textCountSearch else { return }
+            await self.requestSearch(city: text)
         }
     }
 }

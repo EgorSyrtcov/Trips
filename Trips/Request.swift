@@ -72,4 +72,14 @@ extension Request {
             ]
         )
     }
+    
+    static func detailRequest(id: String) -> Request {
+        return Request(
+            endPoint: .detailPlace,
+            queryParameters: [
+                URLQueryItem(name: "place_id", value: id),
+                URLQueryItem(name: "key", value: "AIzaSyD5w9hIjcghZtugzS_JW9Qhb7T1EoxOxJw")
+            ]
+        )
+    }
 }

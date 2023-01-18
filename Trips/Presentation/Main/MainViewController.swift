@@ -9,10 +9,19 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
+    private let service = LocalService()
     private var trips = [TripModel]()
 
-    private let tableView = UITableView()
-    private let service = LocalService()
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.registerClassForCell(MainCell.self)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 180
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
     
     lazy var addButton: UIButton = {
        let button = UIButton()
@@ -20,6 +29,7 @@ final class MainViewController: UIViewController {
         button.clipsToBounds = true
         button.contentMode = .scaleToFill
         button.tintColor = .red
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
@@ -29,21 +39,16 @@ final class MainViewController: UIViewController {
         
         setup()
         setupUI()
-        setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadModels()
     }
     
     private func setup() {
         self.navigationItem.title = "My trips"
         view.backgroundColor = .lightGray
-    }
-    
-    private func setupTableView() {
-        tableView.registerClassForCell(MainCell.self)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.rowHeight = 180
     }
     
     private func loadModels() {
@@ -61,11 +66,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.addSubview(tableView)
-        view.addSubview(addButton)
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        addButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubviews(tableView, addButton)
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -76,7 +77,7 @@ final class MainViewController: UIViewController {
             addButton.heightAnchor.constraint(equalToConstant: 50),
             addButton.widthAnchor.constraint(equalToConstant: 50),
             addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
 }

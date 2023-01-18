@@ -34,5 +34,15 @@ final class LocalService {
         newTripModels.remove(at: index)
         self.tripModels = newTripModels
     }
+    
+    func addDetails(placeId: String, note: String) {
+        if let index = tripModels.firstIndex(where: {$0.placeId == placeId }) {
+            let newTripModels = tripModels
+            let newTrip = newTripModels[index]
+            newTrip.note = note
+            tripModels.remove(at: index)
+            self.tripModels = newTripModels
+        }
+    }
 }
 

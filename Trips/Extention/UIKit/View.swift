@@ -1,5 +1,5 @@
 //
-//  View+Shadow.swift
+//  View.swift
 //  Trips
 //
 //  Created by Egor Syrtcov on 30.11.22.
@@ -16,5 +16,9 @@ extension UIView {
         layer.shadowRadius = 5
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowColor = UIColor.black.cgColor
+    }
+    
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach(addSubview)
     }
 }

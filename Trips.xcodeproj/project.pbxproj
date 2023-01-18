@@ -21,9 +21,12 @@
 		E2A98155293759ED00BE6029 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A98154293759ED00BE6029 /* MainCell.swift */; };
 		E2A9815929375C4900BE6029 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815829375C4900BE6029 /* UITableView.swift */; };
 		E2A9815B29375C8A00BE6029 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815A29375C8A00BE6029 /* UITableViewCell.swift */; };
-		E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815C2937636300BE6029 /* View+Shadow.swift */; };
+		E2A9815D2937636300BE6029 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9815C2937636300BE6029 /* View.swift */; };
 		E2A9816329388E5B00BE6029 /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9816229388E5B00BE6029 /* AddTripViewController.swift */; };
 		E2C473DD29754D1300318C24 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C473DC29754D1300318C24 /* UIApplication.swift */; };
+		E2C473DF2975752200318C24 /* DetailCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C473DE2975752200318C24 /* DetailCity.swift */; };
+		E2C473E12976718600318C24 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C473E02976718600318C24 /* UIViewController.swift */; };
+		E2C473E32976D99100318C24 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C473E22976D99100318C24 /* Task.swift */; };
 		E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA55E52941E4E800DE87B8 /* LocalService.swift */; };
 		E2CA55E92943097E00DE87B8 /* DetailTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CA55E82943097E00DE87B8 /* DetailTrip.swift */; };
 /* End PBXBuildFile section */
@@ -45,9 +48,12 @@
 		E2A98154293759ED00BE6029 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		E2A9815829375C4900BE6029 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		E2A9815A29375C8A00BE6029 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
-		E2A9815C2937636300BE6029 /* View+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shadow.swift"; sourceTree = "<group>"; };
+		E2A9815C2937636300BE6029 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		E2A9816229388E5B00BE6029 /* AddTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		E2C473DC29754D1300318C24 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		E2C473DE2975752200318C24 /* DetailCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCity.swift; sourceTree = "<group>"; };
+		E2C473E02976718600318C24 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		E2C473E22976D99100318C24 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E2CA55E52941E4E800DE87B8 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		E2CA55E82943097E00DE87B8 /* DetailTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				E255CAA229681B6700D585C8 /* City.swift */,
+				E2C473DE2975752200318C24 /* DetailCity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -165,7 +172,9 @@
 				E2C473DC29754D1300318C24 /* UIApplication.swift */,
 				E2A9815829375C4900BE6029 /* UITableView.swift */,
 				E2A9815A29375C8A00BE6029 /* UITableViewCell.swift */,
-				E2A9815C2937636300BE6029 /* View+Shadow.swift */,
+				E2A9815C2937636300BE6029 /* View.swift */,
+				E2C473E02976718600318C24 /* UIViewController.swift */,
+				E2C473E22976D99100318C24 /* Task.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -273,15 +282,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2CA55E62941E4E800DE87B8 /* LocalService.swift in Sources */,
-				E2A9815D2937636300BE6029 /* View+Shadow.swift in Sources */,
+				E2A9815D2937636300BE6029 /* View.swift in Sources */,
 				E297D08B29597BF800E4E872 /* SearchViewController.swift in Sources */,
+				E2C473E12976718600318C24 /* UIViewController.swift in Sources */,
 				E255CA9E29680F1200D585C8 /* Service.swift in Sources */,
 				E255CAA329681B6700D585C8 /* City.swift in Sources */,
 				E2788C9B293644060024D59C /* MainViewController.swift in Sources */,
 				E255CA9C2967FAAB00D585C8 /* Request.swift in Sources */,
 				E2788C97293644060024D59C /* AppDelegate.swift in Sources */,
 				E2788CB0293648580024D59C /* TripModel.swift in Sources */,
+				E2C473DF2975752200318C24 /* DetailCity.swift in Sources */,
 				E2788C99293644060024D59C /* SceneDelegate.swift in Sources */,
+				E2C473E32976D99100318C24 /* Task.swift in Sources */,
 				E255CAA0296810D900D585C8 /* Endpoint.swift in Sources */,
 				E2C473DD29754D1300318C24 /* UIApplication.swift in Sources */,
 				E2A9816329388E5B00BE6029 /* AddTripViewController.swift in Sources */,
